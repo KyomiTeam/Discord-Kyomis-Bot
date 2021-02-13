@@ -17,7 +17,8 @@ module.exports = {
             .setColor("RANDOM")
             .setImage(img)
             .setTitle(`From /r/${random}`)
-            .setURL(`https://reddit.com/r/${random}`);
+            .setURL(`https://reddit.com/r/${random}`)
+            .setFooter(`${client.user.username} - Meme Generator`)
 
         message.channel.send(embed);
     }

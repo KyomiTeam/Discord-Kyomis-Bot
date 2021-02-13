@@ -27,7 +27,7 @@ function getAll(client, message) {
         .setTitle("Need help ?")
         .addField('Bot Infos :', '- Perfix : `' + process.env.PREFIX + '`' + '\nCreator : `Kyomi`')
         .setDescription("I'm here for you !")
-        .setFooter("Kyomi's Discord Bot - Help Command")
+        .setFooter(`${client.user.username} - Help Command`)
         .setImage('https://contenthub-static.grammarly.com/blog/wp-content/uploads/2018/05/how-to-ask-for-help.jpg')
         .setTimestamp()
 

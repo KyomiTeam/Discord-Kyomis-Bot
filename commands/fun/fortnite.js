@@ -65,7 +65,7 @@ module.exports = {
                 .setTitle(`${search.username} (${search.platform})`)
                 .setURL(search.url)
                 .setColor("#9d4dbb")
-                .setFooter(`Kyomi's Discord Bot - Fortnite Stats`, message.author.displayAvatarURL)
+                .setFooter(`${client.user.username} - Fortnite Stats`, message.author.displayAvatarURL)
                 .setTimestamp()
                 .addField("Solo:", stripIndents`**- Wins:** ${solo.wins}
                 **- KD:** ${solo.kd}

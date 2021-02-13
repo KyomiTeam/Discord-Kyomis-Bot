@@ -33,7 +33,7 @@ module.exports = {
         }
 
         message.channel.bulkDelete(deleteAmount, true).then(deleted => message.channel.send(`I deleted \`${deleted.size}\` messages.`)).catch(err => message.reply(`Something went wrong... ${err}`));
-        console.log('Bot cleared ' + deleteAmount + ' messages')
+        console.log(`Bot cleared ${deleteAmount} messages`)
         setTimeout(()=> message.channel.bulkDelete(1), 2000);
     }
 }

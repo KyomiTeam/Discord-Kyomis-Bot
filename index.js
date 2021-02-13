@@ -23,6 +23,8 @@ config({
     require(`./handlers/${handler}`)(client);
 });
 
+require('./dashboard/server');
+
 client.on("ready", () => {
     console.log(`Hi, ${client.user.username} is now online!`);
 
@@ -33,6 +35,8 @@ client.on("ready", () => {
             type: "STREAMING"
         }
     }); 
+
+    
 
     const statuses = [
         () => `${client.guilds.cache.size} server(s)`,
@@ -55,7 +59,7 @@ client.on("message", async message => {
     if (!message.content.startsWith(prefix)) return;
     if (!message.member) message.member = await message.guild.fetchMember(message);
     if (message.content.startsWith(prefix), !message.content.endsWith(prefix)){
-        console.log(message.author.username + ' send the command "' + message.content +'"')
+        console.log(`${message.author.username} (${message.author.id}) sent command : "${message.content}"`)
     }
     
 
@@ -77,7 +81,7 @@ client.on("message", async message => {
             .setImage('https://supermarketeur.com/wp-content/uploads/2020/08/http-error-500.png')
             .setDescription("This command doesn't exist !")
             .addField('Error Code :', '0x0001')
-            .setFooter("Kyomi's Discord Bot - ERROR")
+            .setFooter(`${client.user.username} - ERROR`)
         message.channel.send(embed);
         console.log('No command existing (0x0001)')
     }

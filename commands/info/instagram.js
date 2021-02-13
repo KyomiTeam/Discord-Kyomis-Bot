@@ -46,7 +46,7 @@ module.exports = {
             **- Followers:** ${account.edge_followed_by.count}
             **- Following:** ${account.edge_follow.count}
             **- Private account:** ${account.is_private ? "Yes 🔐" : "Nope 🔓"}`)
-            .setFooter("Kyomi's Discord Bot - Instagram Search");
+            .setFooter(`${client.user.username} - Instagram Search`);
 
         console.log('Bot sent ' + account.username + ' instagram infos')
         message.channel.send(embed);

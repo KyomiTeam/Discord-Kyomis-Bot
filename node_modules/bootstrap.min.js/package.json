@@ -1,0 +1,15 @@
+{
+  "name": "bootstrap.min.js",
+  "version": "3.3.5",
+  "description": "bootstrap.min.js",
+  "main": "bootstrap.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bootstrap.min.js"
+  ],
+  "author": "mzg",
+  "license": "ISC"
+  
+}
