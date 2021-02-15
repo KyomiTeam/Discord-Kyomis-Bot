@@ -2,6 +2,7 @@ const { Client, Collection } = require("discord.js");
 const Discord = require("discord.js");
 const { config } = require("dotenv");
 const fs = require("fs");
+//const mongoose = require('mongoose');
 
 
 console.log(`Starting...`);
@@ -10,6 +11,11 @@ const client = new Client({
     disableEveryone: true
 });
 
+// Database Connecting
+//mongoose.connect('mongodb://localhost/Reports');
+//const Report = require = ('./database/report.js');
+
+// Commands Loading
 client.commands = new Collection();
 client.aliases = new Collection();
 
@@ -23,10 +29,14 @@ config({
     require(`./handlers/${handler}`)(client);
 });
 
+// Dashboard Initializing
 require('./dashboard/server');
 
+
+// Bot Started
 client.on("ready", () => {
     console.log(`Hi, ${client.user.username} is now online!`);
+    console.log('-----------------------------');
 
     client.user.setPresence({
         status: "online",
@@ -36,7 +46,7 @@ client.on("ready", () => {
         }
     }); 
 
-    
+    //require('./modules/dashboard')(this.client);    //
 
     const statuses = [
         () => `${client.guilds.cache.size} server(s)`,
