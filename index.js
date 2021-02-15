@@ -69,7 +69,7 @@ client.on("message", async message => {
     if (!message.content.startsWith(prefix)) return;
     if (!message.member) message.member = await message.guild.fetchMember(message);
     if (message.content.startsWith(prefix), !message.content.endsWith(prefix)){
-        console.log(`${message.author.username} (${message.author.id}) sent command : "${message.content}"`)
+        console.log(`${message.author.username} (${message.author.id}) sent command : "${message.content}"               (Server: ${message.member.guild})`)
     }
     
 
