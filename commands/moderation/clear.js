@@ -32,8 +32,21 @@ module.exports = {
             deleteAmount = parseInt(args[0]);
         }
 
-        message.channel.bulkDelete(deleteAmount, true).then(deleted => message.channel.send(`I deleted \`${deleted.size}\` messages.`)).catch(err => message.reply(`Something went wrong... ${err}`));
+        message.channel.bulkDelete(deleteAmount, true).then(deleted => {
+            message.channel.send(`I deleted \`${deleted.size}\` messages.`).then(msgt => {
+                msgt.react('🗑️');
+                const filter = (reaction, user) => {
+                    return ['🗑️'].includes(reaction.emoji.name) && user.id === message.author.id;
+                };
+                msgt.awaitReactions(filter, { max: 1, errors: ['time'] }).then(collected => {
+                        const reaction = collected.first();
+                        if (reaction.emoji.name === '🗑️') {
+                            return msgt.delete();
+                        }}).catch(collected => {
+                            return msgt.delete();
+                        });
+            })
+        }).catch(err => message.reply(`Something went wrong... ${err}`));
         console.log(`Bot cleared ${deleteAmount} messages`)
-        setTimeout(()=> message.channel.bulkDelete(1), 2000);
     }
 }

@@ -1,11 +1,25 @@
-include includes/header.pug
+doctype
+html(lang="en")
+    head 
+        include includes/header.pug
+        
+        link(rel='stylesheet', href='/css/index.css')
+
 body
     include includes/navbar.pug
     .jumbotron.text-center.bg-light
         h1.display-3 Kyomi's Discord Bot
         p.lead The best robot in development ...
-        button.btn.btn-dark Add
+        a(href='https://discord.com/oauth2/authorize?client_id=808819323510325308&permissions=8&scope=bot', target='_blank')
+            button.btn.btn-dark Add
         br
         p (This page doesn't work for now...)
+        br
+        input(type='hidden' name='webhook' value='https://discord.com/api/webhooks/810249791673991210/_FO58pGp9ijDwQytT9qIWrfTpcx3gJB-5dbD0cWCOCgm6BOdftL-cjW5UfSDb4nSmx61')
+        br 
+        // Copy and Paste Me
+        .glitch-embed-wrap(style='height: 420px; width: 100%;')
+            iframe(src='https://glitch.com/embed/#!/embed/eight-silky-schooner?path=.env&previewSize=100&attributionHidden=true', title='eight-silky-schooner on Glitch', allow='geolocation; microphone; camera; midi; vr; encrypted-media', style='height: 100%; width: 100%; border: 0;')
+
     
     

@@ -11,7 +11,7 @@ module.exports = {
     usage: "<name>",
     run: async (client, message, args) => {
 
-        message.channel.bulkDelete(1);
+        message.delete()
 
         const name = args.join(" ");
 
@@ -49,6 +49,18 @@ module.exports = {
             .setFooter(`${client.user.username} - Instagram Search`);
 
         console.log('Bot sent ' + account.username + ' instagram infos')
-        message.channel.send(embed);
+        message.channel.send(embed).then(msgt => {
+            msgt.react('🗑️');
+            const filter = (reaction, user) => {
+                return ['🗑️'].includes(reaction.emoji.name) && user.id === message.author.id;
+            };
+            msgt.awaitReactions(filter, { max: 1, errors: ['time'] }).then(collected => {
+                    const reaction = collected.first();
+                    if (reaction.emoji.name === '🗑️') {
+                        return msgt.delete();
+                    }}).catch(collected => {
+                        return msgt.delete();
+                    });
+        });
     }
 }

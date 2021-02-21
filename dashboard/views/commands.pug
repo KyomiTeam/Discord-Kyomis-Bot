@@ -1,0 +1,20 @@
+include includes/header.pug
+body
+    include includes/navbar.pug
+    .container
+        .jumbotron.text-center.bg-transparent
+            h1.display-3 Kyomi's Discord Bot - Commands
+            p.lead Find bot commands !
+            hr
+            br
+    
+        section#commands
+            .row
+                .col-sm-3
+                    each name in categoryNames
+                    ul.list-group.my-2
+                        li.list-group-item test
+                .col-sm-9
+                    ul.list-group 
+                        li.list-group-item test
+            

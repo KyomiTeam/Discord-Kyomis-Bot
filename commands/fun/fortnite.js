@@ -11,7 +11,7 @@ module.exports = {
     usage: "<username | store>",
     run: async (client, message, args) => {
 
-        message.channel.bulkDelete(1);
+        message.delete()
         message.channel.send('Please wait...')
 
 
@@ -35,7 +35,20 @@ module.exports = {
                 **- Image:** [Press Me](${el.image})`, true)
             });
 
-            message.channel.send(embed);
+            message.channel.send(embed).then(msgt => {
+                msgt.react('🗑️');
+                const filter = (reaction, user) => {
+                    return ['🗑️'].includes(reaction.emoji.name) && user.id === message.author.id;
+                };
+                msgt.awaitReactions(filter, { max: 1, errors: ['time'] }).then(collected => {
+                        const reaction = collected.first();
+                        if (reaction.emoji.name === '🗑️') {
+                            return msgt.delete();
+                        }}).catch(collected => {
+                            return msgt.delete();
+                        });
+            })
+            
         } else {
             const lastWord = args[args.length - 1].toLowerCase();
             
@@ -86,7 +99,19 @@ module.exports = {
             message.channel.bulkDelete(1);
 
             console.log('Bot sent ' + username + ' fortnite infos on ' + platform + ' plateform')
-            message.channel.send(embed)
+            message.channel.send(embed).then(msgt => {
+                msgt.react('🗑️');
+                const filter = (reaction, user) => {
+                    return ['🗑️'].includes(reaction.emoji.name) && user.id === message.author.id;
+                };
+                msgt.awaitReactions(filter, { max: 1, errors: ['time'] }).then(collected => {
+                        const reaction = collected.first();
+                        if (reaction.emoji.name === '🗑️') {
+                            return msgt.delete();
+                        }}).catch(collected => {
+                            return msgt.delete();
+                        });
+            })
         }
     }
 }

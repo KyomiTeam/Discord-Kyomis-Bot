@@ -1,10 +1,12 @@
-nav.navbar.navbar-expand-lg.navbar-light.bg-light
+nav.navbar.navbar-expand-lg.navbar-light.bg-lighttransparent
   .container-fluid
-    a.navbar-brand(href='#') Kyomi's Discord Bot
+    a.navbar-brand(href='/') Kyomi's Discord Bot
     button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarNavAltMarkup', aria-controls='navbarNavAltMarkup', aria-expanded='false', aria-label='Toggle navigation')
       span.navbar-toggler-icon
     #navbarNavAltMarkup.collapse.navbar-collapse
       .navbar-nav
         a.nav-link(href='/commands') Commands
+      .navbar-nav
+        a.nav-link(href=`https://moonofsimon.wixsite.com/kyomismaps/discord-bot`, target='_blank') Website
       .navbar-nav.ml-auto
         a.nav-link(href='/login') Login

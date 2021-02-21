@@ -20,12 +20,13 @@ module.exports = {
 
 function getAll(client, message) {
 
-    message.channel.bulkDelete(1);
+    message.delete()
 
     const embed = new Discord.MessageEmbed()
         .setColor("#4ad5ff")
         .setTitle("Need help ?")
-        .addField('Bot Infos :', '- Perfix : `' + process.env.PREFIX + '`' + '\nCreator : `Kyomi`')
+        .addField('Bot Infos :', '- Perfix : `' + process.env.PREFIX + '`' + '\n- Creator : `Kyomi`')
+        .addField('More Help :', 'To contact a bot admin, use : `*contact <your question here>`')
         .setDescription("I'm here for you !")
         .setFooter(`${client.user.username} - Help Command`)
         .setImage('https://contenthub-static.grammarly.com/blog/wp-content/uploads/2018/05/how-to-ask-for-help.jpg')
@@ -42,13 +43,25 @@ function getAll(client, message) {
         .map(cat => stripIndents`**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(cat)}`)
         .reduce((string, category) => string + "\n" + category);
         console.log('Bot sent help embed')
-    return message.channel.send(embed.setDescription(info));
+    return message.channel.send(embed.setDescription(info)).then(msgt => {
+        msgt.react('🗑️');
+        const filter = (reaction, user) => {
+            return ['🗑️'].includes(reaction.emoji.name) && user.id === message.author.id;
+        };
+        msgt.awaitReactions(filter, { max: 1, errors: ['time'] }).then(collected => {
+                const reaction = collected.first();
+                if (reaction.emoji.name === '🗑️') {
+                    return msgt.delete();
+                }}).catch(collected => {
+                    return msgt.delete();
+                });
+    });;
     
 }
 
 function getCMD(client, message, input) {
 
-    message.channel.bulkDelete(1);
+    message.delete()
     
     const embed = new Discord.MessageEmbed();
 
@@ -70,5 +83,5 @@ function getCMD(client, message, input) {
 
     
     console.log('Bot sent infos about "' + cmd.name + '" command')
-    return message.channel.send(embed.setColor("GREEN").setDescription(info));
+    return message.channel.send(embed.setColor("GREEN").setDescription(info))
 }
