@@ -1,5 +1,7 @@
 # Kyomi's Discord Bot
 
+For any question, use the command : "*call <your question>"
+
 -------INSTALLATION-------
 1/ Download the bot.
 

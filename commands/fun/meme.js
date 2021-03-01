@@ -25,7 +25,7 @@ module.exports = {
             const filter = (reaction, user) => {
                 return ['🗑️'].includes(reaction.emoji.name) && user.id === message.author.id;
             };
-            msgt.awaitReactions(filter, { max: 1, time: 5000, errors: ['time'] }).then(collected => {
+            msgt.awaitReactions(filter, { max: 1, errors: ['time'] }).then(collected => {
                     const reaction = collected.first();
                     if (reaction.emoji.name === '🗑️') {
                         return msgt.delete();

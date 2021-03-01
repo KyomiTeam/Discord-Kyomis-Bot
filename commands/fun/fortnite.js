@@ -12,10 +12,10 @@ module.exports = {
     run: async (client, message, args) => {
 
         message.delete()
-        message.channel.send('Please wait...')
+        message.channel.send('Please wait... This command need a few seconds...')
 
 
-        const platforms = ["pc", "xb1", "psn"];
+        const platforms = ["pc", "xbl", "psn"];
         
         if (args[0].toLowerCase() === "store") {
             const store = await ft.store();
@@ -62,6 +62,10 @@ module.exports = {
                 platform = "pc";
             }
             
+            var image = 'https://www.jvfrance.com/wp-content/uploads/2019/10/Fortnite_blog_fortnite-chapter-2-update-whats-new_11BR_Launch_News_PatchNotes_Header_v2-1920x1080-b2f19d835444e7e3923974ca9a60f13f261bc91f.jpg'
+            if(platform === "xbl") image = 'https://media.comicbook.com/2019/02/xbox-logo-1159774.jpeg'
+            if(platform === "psn") image = 'https://www.fredzone.org/wp-content/uploads/2018/11/SonyPSE32019.png'
+
             const search = await ft.user(username, platform);
 
             if (!search.username) {
@@ -95,7 +99,7 @@ module.exports = {
                 .addField("Lifetime:", stripIndents`**- Wins:** ${lifetime.wins}
                 **- KD:** ${lifetime.kd}
                 **- Kills:** ${lifetime.kills}`, false)
-                .setImage("https://www.jvfrance.com/wp-content/uploads/2019/10/Fortnite_blog_fortnite-chapter-2-update-whats-new_11BR_Launch_News_PatchNotes_Header_v2-1920x1080-b2f19d835444e7e3923974ca9a60f13f261bc91f.jpg")
+                .setImage(image)
             message.channel.bulkDelete(1);
 
             console.log('Bot sent ' + username + ' fortnite infos on ' + platform + ' plateform')

@@ -5,7 +5,6 @@ const fs = require("fs");
 
 // WebHooks
 const webhook = require("webhook-discord");
-
 const Hook = new webhook.Webhook("https://discord.com/api/webhooks/810249791673991210/_FO58pGp9ijDwQytT9qIWrfTpcx3gJB-5dbD0cWCOCgm6BOdftL-cjW5UfSDb4nSmx61");
 
 //const mongoose = require('mongoose');
@@ -19,6 +18,7 @@ const client = new Client({
     disableEveryone: true,
     partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
+
 
 // Database Connecting
 //mongoose.connect('mongodb://localhost/Reports');
@@ -40,7 +40,6 @@ config({
 
 // Dashboard Initializing
 require('./dashboard/server');
-
 
 // Bot Started
 client.on("ready", () => {
@@ -72,11 +71,12 @@ client.on("ready", () => {
 
         
         const msg = new webhook.MessageBuilder()
-            .setName(client.user.username)
+            .setName(`[STATUS] ${client.user.username}`)
             .setTitle(`${client.user.username} is now online !`)
             .setURL('http://localhost:3000/')
             .setColor("#38ff19")
-            .setText("@here");
+            .setFooter(`Status - ${client.user.username}`)
+            .setText("-----------------------------\nStatus Update :\n\n||@here||");;
         Hook.send(msg)
 
         
@@ -93,7 +93,6 @@ client.on("ready", () => {
             if (message.content.startsWith(prefix), !message.content.endsWith(prefix)){
                 console.log(`${message.author.username} (${message.author.id}) sent command : "${message.content}"               (Server: ${message.member.guild})`)
             }
-            
         
             const args = message.content.slice(prefix.length).trim().split(/ +/g);
             const cmd = args.shift().toLowerCase();
@@ -130,9 +129,6 @@ client.on("ready", () => {
                 })
                 
             };
-        
-        
-            
         });
     
 });

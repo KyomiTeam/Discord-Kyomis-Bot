@@ -46,7 +46,11 @@ module.exports = {
                             return msgt.delete();
                         });
             })
-        }).catch(err => message.reply(`Something went wrong... ${err}`));
+        }).catch(err => {
+            message.reply(`Something went wrong... ${err}`)
+            console.log(`Something went wrong... ${err}`)
+        })
+        ;
         console.log(`Bot cleared ${deleteAmount} messages`)
     }
 }
