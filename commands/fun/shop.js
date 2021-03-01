@@ -1,7 +1,7 @@
 module.exports = {
     name: "shop",
     aliases: ["s"],
-    category: "fun",
+    //category: "fun",
     description: "Fortnite Shop",
     usage: "[command | alias]",
     run: async (client, message, args) => {
